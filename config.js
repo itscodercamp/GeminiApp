@@ -1,2 +1,2 @@
 // config.js
-export const API_KEY = 'AIzaSyDMbTNTdXxqZJ2LTNZsscy09x3pgyNRDk4';
+export const API_KEY = 'Add-API-Key-Here';
