@@ -1,4 +1,4 @@
-GeminiApp - Interactive Math Problem Solver
+**GeminiApp - Interactive Math Problem Solver**
 GeminiApp is a React Native application designed to offer interactive, real-time solutions to math problems using the Google Gemini API. This project has a built-in refresh system and follows a clean, modular approach for better maintainability. The development environment is set up with Expo, so you can easily start working with the app by following the simple steps below.
 
 Getting Started
