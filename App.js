@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, ScrollView, ActivityIndicator, RefreshControl } from 'react-native';
 import axios from 'axios';
 import { API_KEY } from './config'; // Import API key from config
+import Markdown from 'react-native-markdown-display';
 
 const App = () => {
   const [question, setQuestion] = useState('');
@@ -19,6 +20,7 @@ const App = () => {
     setLoading(true);
     try {
       const response = await axios.post(
+        // 'https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent',
         'https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent',
         {
           contents: [
@@ -74,7 +76,7 @@ const App = () => {
         <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
       }
     >
-      <Text style={styles.header}>Ask a Anything</Text>
+      <Text style={styles.header}>Ask Anything</Text>
       <TextInput
         style={styles.input}
         placeholder="Type your question here..."
@@ -89,10 +91,13 @@ const App = () => {
       />
       {loading && <ActivityIndicator size="large" color="#007bff" style={styles.spinner} />}
       {answer ? (
-        <View style={styles.answerContainer}>
-          <Text style={styles.answer}>{answer}</Text>
-        </View>
-      ) : null}
+  <View style={styles.answerContainer}>
+    {/* Render the answer as markdown */}
+    <Markdown style={markdownStyles}>
+      {answer}
+    </Markdown>
+  </View>
+) : null}
     </ScrollView>
   );
 };
@@ -134,5 +139,19 @@ const styles = StyleSheet.create({
     color: '#495057',
   },
 });
+
+const markdownStyles = {
+  text: {
+    fontSize: 18,
+    color: '#495057',
+  },
+  strong: {
+    fontWeight: 'bold', // Style for bold text
+  },
+  em: {
+    fontStyle: 'italic', // Style for italic text
+  },
+};
+
 
 export default App;
